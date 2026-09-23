@@ -1,0 +1,10 @@
+﻿U;HA-LKA;Boeing 737;Radar,Ülésrendszer;25000000;180
+U;HA-LKB;Airbus A320;Wifi,Klíma;27000000;150
+T;HA-CGA;Boeing 747F;Rakodótér-bővítés,Radar;35000000;110000
+U;HA-LKC;Boeing 737;Wifi,Ülésrendszer;26000000;175
+T;HA-CGB;Antonov An-124;Rakodótér-bővítés,Csörlőrendszer;42000000;150000
+U;HA-LKD;Airbus A321;Radar,Klíma;28000000;220
+U;HA-LKE;Boeing 787;Wifi,Radar,Ülésrendszer;45000000;250
+T;HA-CGC;Boeing 767F;Rakodótér-bővítés;30000000;54000
+U;HA-LKF;Airbus A320;Klíma,Ülésrendszer;27000000;150
+T;HA-CGD;Boeing 747F;Csörlőrendszer,Radar;36000000;112000
