@@ -14,17 +14,17 @@
                     string[] adatok = s.Split(";");
                     string lajstrom = adatok[1];
                     string nev=adatok[2];
-                    List<string> felszereltsegek = adatok[3].Split(",").ToList();
+                    List<string> felszereltseg = adatok[3].Split(",").ToList();
                     int ertek = int.Parse(adatok[4]);
                     if (adatok[0] == "U")
                     {
                         int ulesek=int.Parse(adatok[5]);
-                        gepek.Add(new UtasszallitoGep(lajstrom, nev, felszereltsegek, ertek, ulesek));
+                        gepek.Add(new UtasszallitoGep(lajstrom, nev, felszereltseg, ertek, ulesek));
                     }
                     else if(adatok[0] == "T")
                     {
                         int maxKg=int.Parse(adatok[5]);
-                        gepek.Add(new TeherszallitoGep(lajstrom,nev,felszereltsegek,ertek,maxKg));
+                        gepek.Add(new TeherszallitoGep(lajstrom,nev,felszereltseg,ertek,maxKg));
                     }
                 }
                 catch (Exception e)
@@ -54,6 +54,25 @@
             }
             File.WriteAllLines("utasszallitok.txt", utasszallitok);
             File.WriteAllLines("teherszallitok.txt", teherszallitok);
+
+            Console.WriteLine();
+            //fejlesztések fájl beolvasás
+            string[] felszereltsegekstr = File.ReadAllLines("felszereltsegek.txt");
+            Dictionary<string, int> felszereltsegek= new Dictionary<string, int>();
+            foreach(var  elem in felszereltsegekstr)
+            {
+                string felsz = elem.Split(",")[0];
+                int ar =int.Parse(elem.Split(",")[1]);
+                if (!felszereltsegek.ContainsKey(felsz))
+                {
+                    felszereltsegek.Add(felsz, ar);
+                }
+            }
+            Console.WriteLine("Felszereltség neve | Ára");
+            foreach(var item in felszereltsegek)
+            {
+                Console.WriteLine($"{item.Key} | {item.Value}");
+            }
 
         }
     }
