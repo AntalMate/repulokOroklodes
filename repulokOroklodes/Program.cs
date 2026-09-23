@@ -56,16 +56,24 @@
             File.WriteAllLines("teherszallitok.txt", teherszallitok);
 
             Console.WriteLine();
-            //fejlesztések fájl beolvasás
+
+            //új repülő felvitele
+            Console.WriteLine("Adja meg az új repülő lajstromszámát: ");
+            string ujLajstrom = Console.ReadLine();
+            Console.WriteLine("Adja meg az új repülő nevét: ");
+            string ujNev= Console.ReadLine();   
+
+            //fejlesztések kiírása, bekérése
+            
             string[] felszereltsegekstr = File.ReadAllLines("felszereltsegek.txt");
             Dictionary<string, int> felszereltsegek= new Dictionary<string, int>();
             foreach(var  elem in felszereltsegekstr)
             {
                 string felsz = elem.Split(",")[0];
                 int ar =int.Parse(elem.Split(",")[1]);
-                if (!felszereltsegek.ContainsKey(felsz))
+                if (!felszereltsegek.ContainsKey(felsz.ToLower()))
                 {
-                    felszereltsegek.Add(felsz, ar);
+                    felszereltsegek.Add(felsz.ToLower(), ar);
                 }
             }
             Console.WriteLine("Felszereltség neve | Ára");
@@ -74,6 +82,52 @@
                 Console.WriteLine($"{item.Key} | {item.Value}");
             }
 
+            Random rnd = new Random();
+            int vegosszeg=rnd.Next(10000000,40000000);
+            List<string> ujFelszLista=new List<string>();
+            while (true)
+            {
+                Console.WriteLine("Adja meg az új repülő felszereltségét, vagy üssön üres entert ha nem kíván többet hozzáadni: ");
+                string ujfelszereltseg= Console.ReadLine();
+                int ar;
+                if (felszereltsegek.TryGetValue(ujfelszereltseg.ToLower(), out ar))
+                {
+                    ujFelszLista.Add(ujfelszereltseg);
+                    vegosszeg += ar;
+                    Console.WriteLine("Sikeres hozzáadás!");
+                }
+                else if (ujfelszereltseg == "")
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Nincs ilyen felszereltség!");
+                }
+            }
+
+            //U/T, mentés
+            while (true)
+            {
+                Console.WriteLine("Kérem adja meg ogy utas- vagy teherszállító (U/T): ");
+                string utInput = Console.ReadLine();
+                if (utInput.ToUpper() == "U")
+                {
+                    Console.WriteLine("");
+
+                }
+                else if(utInput.ToUpper() == "T")
+                {
+
+                }
+                else
+                {
+                    Console.WriteLine("Rossz bemenet!");
+                }
+            }
+
+
+            
         }
     }
 }
