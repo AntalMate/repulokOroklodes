@@ -113,18 +113,32 @@
                 string utInput = Console.ReadLine();
                 if (utInput.ToUpper() == "U")
                 {
-                    Console.WriteLine("");
+                    Console.WriteLine("Adja meg hány utast tud szállítani: ");
+                    int ujUtas = int.Parse(Console.ReadLine());
+                    Repulo ujRepulo= new UtasszallitoGep(ujLajstrom,ujNev, ujFelszLista,vegosszeg,ujUtas);
+                    Console.WriteLine("A repülője: ");
+                    Console.WriteLine(ujRepulo);
+                    gepek.Add(ujRepulo);
+                    break;
 
                 }
                 else if(utInput.ToUpper() == "T")
                 {
-
+                    Console.WriteLine("Adja meg hány Kg rakományt tud szállítani: ");
+                    int ujKg = int.Parse(Console.ReadLine());
+                    Repulo ujRepulo = new TeherszallitoGep(ujLajstrom, ujNev, ujFelszLista, vegosszeg, ujKg);
+                    Console.WriteLine("A repülője: ");
+                    Console.WriteLine(ujRepulo);
+                    gepek.Add(ujRepulo);
+                    break;
                 }
                 else
                 {
                     Console.WriteLine("Rossz bemenet!");
                 }
             }
+
+            File.WriteAllText("gepek.txt", string.Join("\n", gepek));
 
 
             
