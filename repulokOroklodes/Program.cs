@@ -37,6 +37,24 @@
                 Console.WriteLine(elem);
             }
 
+            //gépek kiírása külön fájlokba
+            List<string> utasszallitok = new List<string>();
+            List<string> teherszallitok=new List<string>();
+            foreach (var elem in gepek)
+            {
+                if (elem is UtasszallitoGep)
+                {
+                    utasszallitok.Add(elem.ToString());
+                }
+                else
+                {
+                    teherszallitok.Add(elem.ToString());
+
+                }
+            }
+            File.WriteAllLines("utasszallitok.txt", utasszallitok);
+            File.WriteAllLines("teherszallitok.txt", teherszallitok);
+
         }
     }
 }
