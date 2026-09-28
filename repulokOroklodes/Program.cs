@@ -39,6 +39,7 @@
                 Console.WriteLine("1 - Gépek listázása");
                 Console.WriteLine("2 - Új repülő felvitele");
                 Console.WriteLine("3 - Gépek kiírása külön fájlokba");
+                Console.WriteLine("4 - Gép törlése");
                 Console.WriteLine("0 - Mentés és kilépés");
                 Console.Write("Választás: ");
 
@@ -156,6 +157,37 @@
                         Console.WriteLine("A két fájl elkészült!");
                         break;
 
+                    case "4":
+                        Console.Write("Adja meg a törlendő repülő lajstromszámát: ");
+                        string lajstrom = Console.ReadLine();
+                        Repulo? gep = gepek.FirstOrDefault(g => g.lajstrom.ToLower() == lajstrom.ToLower());
+                        if (gep == null)
+                        {
+                            Console.WriteLine("Nincs ilyen lajstromszámú repülő!");
+                            break;
+                        }
+
+                        Console.WriteLine("A törlendő gép:");
+                        Console.WriteLine(gep);
+                        while (true)
+                        {
+                            Console.Write("Biztosan törli? (I/N): ");
+                            string valasz = Console.ReadLine().ToUpper();
+                            if (valasz == "I")
+                            {
+                                gepek.Remove(gep);
+                                Console.WriteLine("A gép törölve!");
+                                break;
+                            }
+                            else if (valasz == "N")
+                            {
+                                Console.WriteLine("A törlés megszakítva.");
+                                break;
+                            }
+                            Console.WriteLine("Rossz bemenet!");
+                        }
+                        break;
+                        
                     case "0":
                         File.WriteAllText("gepek.txt", string.Join("\n", gepek));
                         Console.WriteLine("Elmentve! Kilépés!");
@@ -169,6 +201,8 @@
                 }
 
             }
+
+
             
         }
     }
