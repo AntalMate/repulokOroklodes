@@ -28,7 +28,7 @@
                 }
                 catch (Exception e)
                 {
-
+                    Console.WriteLine(e);
                 }
             }
             bool futas = true;
@@ -73,14 +73,17 @@
                                 felszereltsegek.Add(felsz.ToLower(), ar);
                             }
                         }
+
+                        Console.WriteLine("Adja meg a repülő alapárát");
+                        int vegosszeg =int.Parse(Console.ReadLine());
+
                         Console.WriteLine("Felszereltség neve | Ára");
                         foreach (var item in felszereltsegek)
                         {
                             Console.WriteLine($"{item.Key} | {item.Value}");
                         }
 
-                        Random rnd = new Random();
-                        int vegosszeg = rnd.Next(10000000, 40000000);
+
                         List<string> ujFelszLista = new List<string>();
                         while (true)
                         {
@@ -112,7 +115,7 @@
                             {
                                 Console.WriteLine("Adja meg hány utast tud szállítani: ");
                                 int ujUtas = int.Parse(Console.ReadLine());
-                                Repulo ujRepulo = new UtasszallitoGep(ujLajstrom, ujNev, ujFelszLista, vegosszeg, ujUtas);
+                                Repulo ujRepulo = new UtasszallitoGep(ujLajstrom.ToUpper(), ujNev, ujFelszLista, vegosszeg, ujUtas);
                                 Console.WriteLine("A repülője: ");
                                 Console.WriteLine(ujRepulo);
                                 gepek.Add(ujRepulo);
@@ -123,7 +126,7 @@
                             {
                                 Console.WriteLine("Adja meg hány Kg rakományt tud szállítani: ");
                                 int ujKg = int.Parse(Console.ReadLine());
-                                Repulo ujRepulo = new TeherszallitoGep(ujLajstrom, ujNev, ujFelszLista, vegosszeg, ujKg);
+                                Repulo ujRepulo = new TeherszallitoGep(ujLajstrom.ToUpper(), ujNev, ujFelszLista, vegosszeg, ujKg);
                                 Console.WriteLine("A repülője: ");
                                 Console.WriteLine(ujRepulo);
                                 gepek.Add(ujRepulo);
